@@ -8,7 +8,13 @@ using namespace std;
 
 class UIDesign{
     public:
-        string command;
+        string command = "0";
+
+        string loginedUser[3];
+
+        string name, email, id;
+
+        float balance = 0;
 
         // move cursor to custom point
         void moveInput(int x, int y){
@@ -18,15 +24,17 @@ class UIDesign{
             SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
         }
 
-        // check if the user added "@gmail.com" 
-        // bool validateEmail(string email){
-        //     // transform
-        // };
+        // check if the user email is correct or not
+        bool checkForGmail(const string& email) {
+            const string suffix = "@gmail.com";
+            size_t pos = email.find(suffix);
+            return (pos != string::npos) && (pos + suffix.length() == email.length());
+        }
 
         // run the App
         void runUI()
         {
-            if(command == "")
+            if(command == "0")
             {
                 showMainMenu();
             }else if(command == "1")
@@ -34,7 +42,12 @@ class UIDesign{
                 showLoginPage();
             }else if(command == "3")
             {
-                login();
+                if(name == "" || email == "" || id == "")
+                {
+                    show404();
+                }else {
+                    login(name, email, id);
+                }
             }
             else
             {
@@ -63,8 +76,6 @@ class UIDesign{
 
         void showLoginPage()
         {
-
-            string name, email, id;
             system("CLS");
             cout << "---------------------------------------------------" << endl;
             cout << "|                                                 |" << endl;
@@ -105,8 +116,82 @@ class UIDesign{
             cout << "|                                                 |" << endl;
             cout << "---------------------------------------------------" << endl;
             
+            // get email and validate it
             moveInput(14, 7);
             cin >> email;
+            if(!checkForGmail(email)){
+                system("CLS");
+                cout << "---------------------------------------------------" << endl;
+                cout << "|                                                 |" << endl;
+                cout << "|             WELCOME TO MY AUTOMASION            |" << endl;
+                cout << "|                                                 |" << endl;
+                cout << "|             ________________________            |" << endl;
+                cout << "|     name   | " << name << endl;
+                cout << "|             ________________________            |" << endl;
+                cout << "|   * email  |                        |           |" << endl;
+                cout << "|             ________________________            |" << endl;
+                cout << "|     id     |                        |           |" << endl;
+                cout << "|                                                 |" << endl;
+                cout << "|                                                 |" << endl;
+                cout << "|                CLICK '3' TO LOGIN               |" << endl;
+                cout << "|                CLICK '4' TO BACK                |" << endl;
+                cout << "|                                                 |" << endl;
+                cout << "|                                                 |" << endl;
+                cout << "---------------------------------------------------" << endl;
+                cout << "!!!   this email is not valid                     |"<< endl;
+                cout << "---------------------------------------------------" << endl;
+            
+                moveInput(14, 7);
+                cin >> email;
+                if(!checkForGmail(email)){
+                    system("CLS");
+                    cout << "---------------------------------------------------" << endl;
+                    cout << "|                                                 |" << endl;
+                    cout << "|             WELCOME TO MY AUTOMASION            |" << endl;
+                    cout << "|                                                 |" << endl;
+                    cout << "|             ________________________            |" << endl;
+                    cout << "|     name   | " << name << endl;
+                    cout << "|             ________________________            |" << endl;
+                    cout << "|   * email  |                        |           |" << endl;
+                    cout << "|             ________________________            |" << endl;
+                    cout << "|     id     |                        |           |" << endl;
+                    cout << "|                                                 |" << endl;
+                    cout << "|                                                 |" << endl;
+                    cout << "|                CLICK '3' TO LOGIN               |" << endl;
+                    cout << "|                CLICK '4' TO BACK                |" << endl;
+                    cout << "|                                                 |" << endl;
+                    cout << "|                                                 |" << endl;
+                    cout << "---------------------------------------------------" << endl;
+                    cout << "!!!   this email is not valid                     |"<< endl;
+                    cout << "---------------------------------------------------" << endl;
+                    moveInput(14, 7);
+                    cin >> email;
+                    if(!checkForGmail(email)){
+                        system("CLS");
+                        cout << "---------------------------------------------------" << endl;
+                        cout << "|                                                 |" << endl;
+                        cout << "|             WELCOME TO MY AUTOMASION            |" << endl;
+                        cout << "|                                                 |" << endl;
+                        cout << "|             ________________________            |" << endl;
+                        cout << "|     name   | " << name << endl;
+                        cout << "|             ________________________            |" << endl;
+                        cout << "|   * email  |                        |           |" << endl;
+                        cout << "|             ________________________            |" << endl;
+                        cout << "|     id     |                        |           |" << endl;
+                        cout << "|                                                 |" << endl;
+                        cout << "|                                                 |" << endl;
+                        cout << "|                CLICK '3' TO LOGIN               |" << endl;
+                        cout << "|                CLICK '4' TO BACK                |" << endl;
+                        cout << "|                                                 |" << endl;
+                        cout << "|                                                 |" << endl;
+                        cout << "---------------------------------------------------" << endl;
+                        cout << "!!!   this email is not valid                     |" << endl;
+                        cout << "---------------------------------------------------" << endl;
+                        moveInput(14, 7);
+                        cin >> email;
+                    }
+                }
+            }
 
             system("CLS");
             cout << "---------------------------------------------------" << endl;
@@ -173,9 +258,37 @@ class UIDesign{
             cout << "---------------------------------------------------" << endl;
         }
 
-        void login()
-        {
+        void Dashboard(){
+            system("CLS");
+            cout << "---------------------------------------------------" << endl;
+            cout << "| " << loginedUser[0] << " | " << loginedUser[2] << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << "| " << "your balance -->" << balance << " Toman" << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << "|                                                 |" << endl;
+            cout << "|                                                 |" << endl;
+            cout << "|             To charge your balance (6)          |" << endl;
+            cout << "|                                                 |" << endl;
+            cout << "|                To Reserve Meal (5)              |" << endl;
+            cout << "|                                                 |" << endl;
+            cout << "|                                                 |" << endl;
+            cout << "|                                                 |" << endl;
+            cout << "|                                                 |" << endl;
+            cout << "|                                                 |" << endl;
+            cout << "---------------------------------------------------" << endl;
 
+            cin >> command;
+            runUI();
+        }
+
+        // login user
+        void login(string name, string email, string id)
+        {
+            loginedUser[0] = name;
+            loginedUser[1] = email;
+            loginedUser[2] = id;
+
+            Dashboard();            
         }
 
 };
