@@ -49,7 +49,8 @@ class UIDesign{
                     login(name, email, id);
                 }
             }else if(command == "5"){
-                reserveMeal();
+                command = "0";
+                reserveMeal("0");
             }
             else if(command == "6"){
                 chargeMeal();
@@ -448,26 +449,274 @@ class UIDesign{
             Dashboard();
         }
 
-        void reserveMeal()
+        void reserveMeal(string selectedD)
         {
-            system("CLS");
-            cout << "||||||||||||________________________________" << endl;
-            cout << "||||||||||||          |          |          |" << endl;
-            cout << "| Saturday |  Sunday  |  monday  |  Tuesday |" << endl;
-            cout << "| click(0) | click(1) | click(2) | click(3) |" << endl;
-            cout << "||||||||||||__________|__________|__________|" << endl;
-            cout << "||||||||||||________________________________" << endl;
-            cout << "|          |          |                     |" << endl;
-            cout << "| Wednesday| Thursday |                     |" << endl;
-            cout << "| click(4) | click(5) |                     |" << endl;
-            cout << "|__________|__________|_____________________|" << endl;
-            cout << "|            |                              |" << endl;
-            cout << "| 1,500,000  |         To back click (5)    |" << endl;
-            cout << "|            |                              |" << endl;
-            cout << "|  click(4)  |                              |" << endl;
-            cout << "|            |                              |" << endl;
-            cout << "--------------------------------------------" << endl;
+            string selectedDay = selectedD;
+            if(command == "0")
+            {
+                system("CLS");
+                cout << "||||||||||||________________________________" << endl;
+                cout << "||||||||||||          |          |          |" << endl;
+                cout << "|*Saturday |  Sunday  |  monday  |  Tuesday |" << endl;
+                cout << "| click(0) | click(1) | click(2) | click(3) |" << endl;
+                cout << "||||||||||||__________|__________|__________|" << endl;
+                cout << "||||||||||||________________________________" << endl;
+                cout << "|          |          |                     |" << endl;
+                cout << "| Wednesday| Thursday |                     |" << endl;
+                cout << "| click(4) | click(5) |                     |" << endl;
+                cout << "|__________|__________|_____________________|" << endl;
+                cout << "|            |                 |            |" << endl;
+                cout << "| Breakfast  |     Lunch       |   Dinner   |" << endl;
+                cout << "|            |                 |            |" << endl;
+                cout << "|  click(6)  |    click(7)     |  click(8)  |" << endl;
+                cout << "|            |                 |            |" << endl;
+                cout << "--------------------------------------------" << endl;
+                cout << "|      TO BACK CLICK (9)                    |" << endl;
+                cout << "--------------------------------------------" << endl;
+            }else if(command == "1")
+            {
+                system("CLS");
+                cout << "___________||||||||||||______________________" << endl;
+                cout << "|          ||||||||||||          |          |" << endl;
+                cout << "| Saturday | *Sunday  |  monday  |  Tuesday |" << endl;
+                cout << "| click(0) | click(1) | click(2) | click(3) |" << endl;
+                cout << "|          ||||||||||||__________|__________|" << endl;
+                cout << "|__________||||||||||||_____________________" << endl;
+                cout << "|          |          |                     |" << endl;
+                cout << "| Wednesday| Thursday |                     |" << endl;
+                cout << "| click(4) | click(5) |                     |" << endl;
+                cout << "|__________|__________|_____________________|" << endl;
+                cout << "|            |                 |            |" << endl;
+                cout << "| Breakfast  |     Lunch       |   Dinner   |" << endl;
+                cout << "|            |                 |            |" << endl;
+                cout << "|  click(6)  |    click(7)     |  click(8)  |" << endl;
+                cout << "|            |                 |            |" << endl;
+                cout << "--------------------------------------------" << endl;
+                cout << "|      TO BACK CLICK (9)                    |" << endl;
+                cout << "--------------------------------------------" << endl;
+            }else if(command == "2")
+            {
+                system("CLS");
+                cout << "___________|__________||||||||||||__________" << endl;
+                cout << "|          |          ||||||||||||          |" << endl;
+                cout << "| Saturday |  Sunday  | *monday  |  Tuesday |" << endl;
+                cout << "| click(0) | click(1) | click(2) | click(3) |" << endl;
+                cout << "|          |          ||||||||||||__________|" << endl;
+                cout << "|__________|__________||||||||||||__________" << endl;
+                cout << "|          |          |                     |" << endl;
+                cout << "| Wednesday| Thursday |                     |" << endl;
+                cout << "| click(4) | click(5) |                     |" << endl;
+                cout << "|__________|__________|_____________________|" << endl;
+                cout << "|            |                 |            |" << endl;
+                cout << "| Breakfast  |     Lunch       |   Dinner   |" << endl;
+                cout << "|            |                 |            |" << endl;
+                cout << "|  click(6)  |    click(7)     |  click(8)  |" << endl;
+                cout << "|            |                 |            |" << endl;
+                cout << "--------------------------------------------" << endl;
+                cout << "|      TO BACK CLICK (9)                    |" << endl;
+                cout << "--------------------------------------------" << endl;
+            }else if(command == "3")
+            {
+                system("CLS");
+                cout << "_________________________________||||||||||||" << endl;
+                cout << "|          |          |          ||||||||||||" << endl;
+                cout << "| Saturday |  Sunday  |  monday  | *Tuesday |" << endl;
+                cout << "| click(0) | click(1) | click(2) | click(3) |" << endl;
+                cout << "|          |          |          ||||||||||||" << endl;
+                cout << "|__________|__________|__________||||||||||||" << endl;
+                cout << "|          |          |                     |" << endl;
+                cout << "| Wednesday| Thursday |                     |" << endl;
+                cout << "| click(4) | click(5) |                     |" << endl;
+                cout << "|__________|__________|_____________________|" << endl;
+                cout << "|            |                 |            |" << endl;
+                cout << "| Breakfast  |     Lunch       |   Dinner   |" << endl;
+                cout << "|            |                 |            |" << endl;
+                cout << "|  click(6)  |    click(7)     |  click(8)  |" << endl;
+                cout << "|            |                 |            |" << endl;
+                cout << "--------------------------------------------" << endl;
+                cout << "|      TO BACK CLICK (9)                    |" << endl;
+                cout << "--------------------------------------------" << endl;
+            }else if(command == "4")
+            {
+                system("CLS");
+                cout << "_____________________________________________" << endl;
+                cout << "|          |          |          |          |" << endl;
+                cout << "| Saturday |  Sunday  |  monday  |  Tuesday |" << endl;
+                cout << "| click(0) | click(1) | click(2) | click(3) |" << endl;
+                cout << "|          |          |          |          |" << endl;
+                cout << "||||||||||||__________|__________|__________" << endl;
+                cout << "||||||||||||          |                     |" << endl;
+                cout << "|*Wednesday| Thursday |                     |" << endl;
+                cout << "| click(4) | click(5) |                     |" << endl;
+                cout << "||||||||||||__________|_____________________|" << endl;
+                cout << "|            |                 |            |" << endl;
+                cout << "| Breakfast  |     Lunch       |   Dinner   |" << endl;
+                cout << "|            |                 |            |" << endl;
+                cout << "|  click(6)  |    click(7)     |  click(8)  |" << endl;
+                cout << "|            |                 |            |" << endl;
+                cout << "--------------------------------------------" << endl;
+                cout << "|      TO BACK CLICK (9)                    |" << endl;
+                cout << "--------------------------------------------" << endl;
+            }else if(command == "5")
+            {
+                system("CLS");
+                cout << "_____________________________________________" << endl;
+                cout << "|          |          |          |          |" << endl;
+                cout << "| Saturday |  Sunday  |  monday  |  Tuesday |" << endl;
+                cout << "| click(0) | click(1) | click(2) | click(3) |" << endl;
+                cout << "|          |          |          |          |" << endl;
+                cout << "|__________||||||||||||__________|__________" << endl;
+                cout << "|          ||||||||||||                     |" << endl;
+                cout << "| Wednesday|*Thursday |                     |" << endl;
+                cout << "| click(4) | click(5) |                     |" << endl;
+                cout << "|__________||||||||||||_____________________|" << endl;
+                cout << "|            |                 |            |" << endl;
+                cout << "| Breakfast  |     Lunch       |   Dinner   |" << endl;
+                cout << "|            |                 |            |" << endl;
+                cout << "|  click(6)  |    click(7)     |  click(8)  |" << endl;
+                cout << "|            |                 |            |" << endl;
+                cout << "--------------------------------------------" << endl;
+                cout << "|      TO BACK CLICK (9)                    |" << endl;
+                cout << "--------------------------------------------" << endl;
+            }else if(command == "6" || command == "7" || command == "8")
+            {
+                // reserve the meal
+                reserveMeal(selectedDay, command);
+            }else {
+                Dashboard();
+            }
             cin >> command;
+            if(command < "5")
+            {
+                selectedDay = command;
+            }
+            reserveMeal(selectedDay);
+        }
+
+        // reserve meal
+        void reserveMeal(string day, string time){
+            system("CLS");
+
+            string food1, food2, price1, price2;
+
+            if(day == "0" and time == "6")
+            {
+                food1 = food.getFoods().saturday[0][0][0];
+                food2 = food.getFoods().saturday[0][1][0];
+                price1 = food.getFoods().saturday[0][0][1];
+                price2 = food.getFoods().saturday[0][1][1];
+            }else if(day == "0" and time == "7"){
+                food1 = food.getFoods().saturday[1][0][0];
+                food2 = food.getFoods().saturday[1][1][0];
+                price1 = food.getFoods().saturday[1][0][1];
+                price2 = food.getFoods().saturday[1][1][1];
+            }else if(day == "0" and time == "8"){
+                food1 = food.getFoods().saturday[2][0][0];
+                food2 = food.getFoods().saturday[2][1][0];
+                price1 = food.getFoods().saturday[2][0][1];
+                price2 = food.getFoods().saturday[2][1][1];
+            }else if(day == "1" and time == "6")
+            {
+                food1 = food.getFoods().sunday[0][0][0];
+                food2 = food.getFoods().sunday[0][1][0];
+                price1 = food.getFoods().sunday[0][0][1];
+                price2 = food.getFoods().sunday[0][1][1];
+            }else if(day == "1" and time == "7"){
+                food1 = food.getFoods().sunday[1][0][0];
+                food2 = food.getFoods().sunday[1][1][0];
+                price1 = food.getFoods().sunday[1][0][1];
+                price2 = food.getFoods().sunday[1][1][1];
+            }else if(day == "1" and time == "8"){
+                food1 = food.getFoods().sunday[2][0][0];
+                food2 = food.getFoods().sunday[2][1][0];
+                price1 = food.getFoods().sunday[2][0][1];
+                price2 = food.getFoods().sunday[2][1][1];
+            }else if(day == "2" and time == "6")
+            {
+                food1 = food.getFoods().monday[0][0][0];
+                food2 = food.getFoods().monday[0][1][0];
+                price1 = food.getFoods().monday[0][0][1];
+                price2 = food.getFoods().monday[0][1][1];
+            }else if(day == "2" and time == "7"){
+                food1 = food.getFoods().monday[1][0][0];
+                food2 = food.getFoods().monday[1][1][0];
+                price1 = food.getFoods().monday[1][0][1];
+                price2 = food.getFoods().monday[1][1][1];
+            }else if(day == "2" and time == "8"){
+                food1 = food.getFoods().monday[2][0][0];
+                food2 = food.getFoods().monday[2][1][0];
+                price1 = food.getFoods().monday[2][0][1];
+                price2 = food.getFoods().monday[2][1][1];
+            }
+            else if(day == "3" and time == "6")
+            {
+                food1 = food.getFoods().Tuesday[0][0][0];
+                food2 = food.getFoods().Tuesday[0][1][0];
+                price1 = food.getFoods().Tuesday[0][0][1];
+                price2 = food.getFoods().Tuesday[0][1][1];
+            }else if(day == "3" and time == "7"){
+                food1 = food.getFoods().Tuesday[1][0][0];
+                food2 = food.getFoods().Tuesday[1][1][0];
+                price1 = food.getFoods().Tuesday[1][0][1];
+                price2 = food.getFoods().Tuesday[1][1][1];
+            }else if(day == "3" and time == "8"){
+                food1 = food.getFoods().Tuesday[2][0][0];
+                food2 = food.getFoods().Tuesday[2][1][0];
+                price1 = food.getFoods().Tuesday[2][0][1];
+                price2 = food.getFoods().Tuesday[2][1][1];
+            }else if(day == "4" and time == "6")
+            {
+                food1 = food.getFoods().Wednesday[0][0][0];
+                food2 = food.getFoods().Wednesday[0][1][0];
+                price1 = food.getFoods().Wednesday[0][0][1];
+                price2 = food.getFoods().Wednesday[0][1][1];
+            }else if(day == "4" and time == "7"){
+                food1 = food.getFoods().Wednesday[1][0][0];
+                food2 = food.getFoods().Wednesday[1][1][0];
+                price1 = food.getFoods().Wednesday[1][0][1];
+                price2 = food.getFoods().Wednesday[1][1][1];
+            }else if(day == "4" and time == "8"){
+                food1 = food.getFoods().Wednesday[2][0][0];
+                food2 = food.getFoods().Wednesday[2][1][0];
+                price1 = food.getFoods().Wednesday[2][0][1];
+                price2 = food.getFoods().Wednesday[2][1][1];
+            }else if(day == "5" and time == "6")
+            {
+                food1 = food.getFoods().Thursday[0][0][0];
+                food2 = food.getFoods().Thursday[0][1][0];
+                price1 = food.getFoods().Thursday[0][0][1];
+                price2 = food.getFoods().Thursday[0][1][1];
+            }else if(day == "5" and time == "7"){
+                food1 = food.getFoods().Thursday[1][0][0];
+                food2 = food.getFoods().Thursday[1][1][0];
+                price1 = food.getFoods().Thursday[1][0][1];
+                price2 = food.getFoods().Thursday[1][1][1];
+            }else if(day == "5" and time == "8"){
+                food1 = food.getFoods().Thursday[2][0][0];
+                food2 = food.getFoods().Thursday[2][1][0];
+                price1 = food.getFoods().Thursday[2][0][1];
+                price2 = food.getFoods().Thursday[2][1][1];
+            }
+
+            cout << "---------------------------------------------" << endl;
+            cout << "|      balace : " << fixed << setprecision(0) << loginedUser.getBalance() << endl;
+            cout << "---------------------------------------------" << endl;
+            cout << "|  |                                         |" << endl;
+            cout << "|  |---> Food:                               |" << endl;
+            cout << "|  |       1 ( ) _ " << food1 << endl;
+            cout << "|  |               price : "<< price1 << endl;
+            cout << "|  |       2 ( ) _ " << food2 << endl;
+            cout << "|  |               price : "<< price2 << endl;
+            cout << "|  |                                         |" << endl;
+            cout << "|  |---> Dining Hall:                        |" << endl;
+            cout << "|  |       3 ( )                             |" << endl;
+            cout << "|  |       4 ( )                             |" << endl;
+            cout << "|  |       5 ( )                             |" << endl;
+            cout << "|  |                                         |" << endl;
+            cout << "|  |                                         |" << endl;
+            cout << "--------------------------------------------" << endl;
+            cout << "|      TO BACK CLICK (9)                     |" << endl;
+            cout << "--------------------------------------------" << endl;   
         }
 
         // login user
