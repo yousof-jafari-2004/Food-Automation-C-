@@ -12,11 +12,11 @@ class Student {
     // variables =================================
     private: 
 
-        int userId, studentId;
+        int userId;
 
-        string name, email;
+        string name, email, studentId;
 
-        float balance;
+        float balance = 0;
 
         bool isActive;
 
@@ -47,7 +47,7 @@ class Student {
             userId = id;
 
         }
-        void setStudentId(int id)
+        void setStudentId(string id)
         {
 
             studentId = id;
@@ -64,14 +64,20 @@ class Student {
         void setEmail(string txt)
         {
 
-            name = txt;
+            email = txt;
 
         }
 
         void setBalance(float bal)
         {
 
-            balance = bal;
+            balance += bal;
+            
+        }
+        void decreaseBalance(float bal)
+        {
+
+            balance -= bal;
             
         }
         void setActive(bool val)
@@ -80,14 +86,14 @@ class Student {
             isActive = val;
 
         }
-    // getters  =================================
+        // GETTERS  =================================
         int getId() const{
 
             return userId;
 
         }
 
-        int getStudentId() const {
+        string getStudentId() const {
 
             return studentId;
 
@@ -105,7 +111,7 @@ class Student {
 
         }
 
-        float getBalance() const {
+        float getBalance() {
 
             return balance;
 

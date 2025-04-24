@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <iomanip>
 #include <windows.h>
 #pragma once
 
@@ -10,11 +11,11 @@ class UIDesign{
     public:
         string command = "0";
 
-        string loginedUser[3];
+        Student loginedUser;
+
+        Meal food;
 
         string name, email, id;
-
-        float balance = 0;
 
         // move cursor to custom point
         void moveInput(int x, int y){
@@ -34,23 +35,25 @@ class UIDesign{
         // run the App
         void runUI()
         {
-            if(command == "0")
-            {
+            if(command == "0"){
                 showMainMenu();
-            }else if(command == "1")
-            {
+            }else if(command == "1"){
                 showLoginPage();
-            }else if(command == "3")
-            {
+            }else if(command == "2"){
+                showFoodProgram();
+            }else if(command == "3"){
                 if(name == "" || email == "" || id == "")
                 {
                     show404();
                 }else {
                     login(name, email, id);
                 }
+            }else if(command == "5"){
+                reserveMeal();
             }
-            else
-            {
+            else if(command == "6"){
+                chargeMeal();
+            }else{
                 show404();
             }
             cin >> command;
@@ -261,17 +264,17 @@ class UIDesign{
         void Dashboard(){
             system("CLS");
             cout << "---------------------------------------------------" << endl;
-            cout << "| " << loginedUser[0] << " | " << loginedUser[2] << endl;
+            cout << "| " << loginedUser.getName() << " | " << loginedUser.getStudentId() << endl;
             cout << "---------------------------------------------------" << endl;
-            cout << "| " << "your balance -->" << balance << " Toman" << endl;
+            cout << "| " << "your balance --> " << fixed << setprecision(0) << loginedUser.getBalance() << " Toman" << endl;
             cout << "---------------------------------------------------" << endl;
             cout << "|                                                 |" << endl;
             cout << "|                                                 |" << endl;
-            cout << "|             To charge your balance (6)          |" << endl;
+            cout << "|                To See Food List (2)             |" << endl;
             cout << "|                                                 |" << endl;
             cout << "|                To Reserve Meal (5)              |" << endl;
             cout << "|                                                 |" << endl;
-            cout << "|                                                 |" << endl;
+            cout << "|             To charge your balance (6)          |" << endl;
             cout << "|                                                 |" << endl;
             cout << "|                                                 |" << endl;
             cout << "|                                                 |" << endl;
@@ -281,12 +284,202 @@ class UIDesign{
             runUI();
         }
 
+        void showFoodProgram()
+        {
+            system("CLS");
+            cout << "---------------------------------------------------" << endl;
+            cout << "|                                                  |" << endl;
+            cout << "|   (SATURDAY)                                     |" << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "|    |---- Break Fast :                            |" << endl;
+            cout << "|    |   (1) : " << food.getFoods().saturday[0][0][0] << endl;
+            cout << "|    |   (2) : " << food.getFoods().saturday[0][1][0] << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "|    |---- Lunch :                                 |" << endl;
+            cout << "|    |   (1) : " << food.getFoods().saturday[1][0][0] << endl;
+            cout << "|    |   (2) : " << food.getFoods().saturday[1][1][0] << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "|    |---- Dinner :                                |" << endl;
+            cout << "|    |   (1) : " << food.getFoods().saturday[2][0][0] << endl;
+            cout << "|    |   (2) : " << food.getFoods().saturday[2][1][0] << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << "|                                                  |" << endl;
+            cout << "|   (Sunday)                                     |" << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "|    |---- Break Fast :                            |" << endl;
+            cout << "|    |   (1) : " << food.getFoods().sunday[0][0][0] << endl;
+            cout << "|    |   (2) : " << food.getFoods().sunday[0][1][0] << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "|    |---- Lunch :                                 |" << endl;
+            cout << "|    |   (1) : " << food.getFoods().sunday[1][0][0] << endl;
+            cout << "|    |   (2) : " << food.getFoods().sunday[1][1][0] << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "|    |---- Dinner :                                |" << endl;
+            cout << "|    |   (1) : " << food.getFoods().sunday[2][0][0] << endl;
+            cout << "|    |   (2) : " << food.getFoods().sunday[2][1][0] << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << "|                                                  |" << endl;
+            cout << "|   (Monday)                                     |" << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "|    |---- Break Fast :                            |" << endl;
+            cout << "|    |   (1) : " << food.getFoods().monday[0][0][0] << endl;
+            cout << "|    |   (2) : " << food.getFoods().monday[0][1][0] << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "|    |---- Lunch :                                 |" << endl;
+            cout << "|    |   (1) : " << food.getFoods().monday[1][0][0] << endl;
+            cout << "|    |   (2) : " << food.getFoods().monday[1][1][0] << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "|    |---- Dinner :                                |" << endl;
+            cout << "|    |   (1) : " << food.getFoods().monday[2][0][0] << endl;
+            cout << "|    |   (2) : " << food.getFoods().monday[2][1][0] << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << "|                                                  |" << endl;
+            cout << "|   (Tuesday)                                     |" << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "|    |---- Break Fast :                            |" << endl;
+            cout << "|    |   (1) : " << food.getFoods().Tuesday[0][0][0] << endl;
+            cout << "|    |   (2) : " << food.getFoods().Tuesday[0][1][0] << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "|    |---- Lunch :                                 |" << endl;
+            cout << "|    |   (1) : " << food.getFoods().Tuesday[1][0][0] << endl;
+            cout << "|    |   (2) : " << food.getFoods().Tuesday[1][1][0] << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "|    |---- Dinner :                                |" << endl;
+            cout << "|    |   (1) : " << food.getFoods().Tuesday[2][0][0] << endl;
+            cout << "|    |   (2) : " << food.getFoods().Tuesday[2][1][0] << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << "|                                                  |" << endl;
+            cout << "|   (Wednesday)                                     |" << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "|    |---- Break Fast :                            |" << endl;
+            cout << "|    |   (1) : " << food.getFoods().Wednesday[0][0][0] << endl;
+            cout << "|    |   (2) : " << food.getFoods().Wednesday[0][1][0] << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "|    |---- Lunch :                                 |" << endl;
+            cout << "|    |   (1) : " << food.getFoods().Wednesday[1][0][0] << endl;
+            cout << "|    |   (2) : " << food.getFoods().Wednesday[1][1][0] << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "|    |---- Dinner :                                |" << endl;
+            cout << "|    |   (1) : " << food.getFoods().Wednesday[2][0][0] << endl;
+            cout << "|    |   (2) : " << food.getFoods().Wednesday[2][1][0] << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << "|                                                  |" << endl;
+            cout << "|   (Thursday)                                     |" << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "|    |---- Break Fast :                            |" << endl;
+            cout << "|    |   (1) : " << food.getFoods().Thursday[0][0][0] << endl;
+            cout << "|    |   (2) : " << food.getFoods().Thursday[0][1][0] << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "|    |---- Lunch :                                 |" << endl;
+            cout << "|    |   (1) : " << food.getFoods().Thursday[1][0][0] << endl;
+            cout << "|    |   (2) : " << food.getFoods().Thursday[1][1][0] << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "|    |---- Dinner :                                |" << endl;
+            cout << "|    |   (1) : " << food.getFoods().Thursday[2][0][0] << endl;
+            cout << "|    |   (2) : " << food.getFoods().Thursday[2][1][0] << endl;
+            cout << "|    |                                             |" << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << "| " << loginedUser.getName() << " | " << loginedUser.getStudentId() << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << "| " << "your balance --> " << loginedUser.getBalance() << " Toman" << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << "|                                                 |" << endl;
+            cout << "|                                                 |" << endl;
+            cout << "|                To See Food List (2)             |" << endl;
+            cout << "|                                                 |" << endl;
+            cout << "|                To Reserve Meal (5)              |" << endl;
+            cout << "|                                                 |" << endl;
+            cout << "|             To charge your balance (6)          |" << endl;
+            cout << "|                                                 |" << endl;
+            cout << "|                                                 |" << endl;
+            cout << "|                                                 |" << endl;
+            cout << "---------------------------------------------------" << endl;
+        }
+
+        // charge the user balance
+        void chargeMeal(){
+            system("CLS");
+            cout << "___________________________________________________" << endl;
+            cout << "|            |            |            |           |" << endl;
+            cout << "|  200,000   |   500,000  |  700,000   | 1,000,000 |" << endl;
+            cout << "|            |            |            |           |" << endl;
+            cout << "| click(0)   |  click(1)  |  click(2)  | click(3)  |" << endl;
+            cout << "|____________|____________|____________|___________|" << endl;
+            cout << "|            |                                     |" << endl;
+            cout << "| 1,500,000  |         To back click (5)           |" << endl;
+            cout << "|            |                                     |" << endl;
+            cout << "|  click(4)  |                                     |" << endl;
+            cout << "|            |                                     |" << endl;
+            cout << "---------------------------------------------------" << endl;
+            cin >> command;
+            if(command == "0")
+            {
+                loginedUser.setBalance(200000);
+            }else if(command == "1")
+            {
+                loginedUser.setBalance(500000);
+            }
+            else if(command == "2")
+            {
+                loginedUser.setBalance(700000);
+            }
+            else if(command == "3")
+            {
+                loginedUser.setBalance(1000000);
+            }
+            else if(command == "4")
+            {
+                loginedUser.setBalance(1500000);
+            }else if(command == "5")
+            {
+                Dashboard();
+            }
+            Dashboard();
+        }
+
+        void reserveMeal()
+        {
+            system("CLS");
+            cout << "||||||||||||________________________________" << endl;
+            cout << "||||||||||||          |          |          |" << endl;
+            cout << "| Saturday |  Sunday  |  monday  |  Tuesday |" << endl;
+            cout << "| click(0) | click(1) | click(2) | click(3) |" << endl;
+            cout << "||||||||||||__________|__________|__________|" << endl;
+            cout << "||||||||||||________________________________" << endl;
+            cout << "|          |          |                     |" << endl;
+            cout << "| Wednesday| Thursday |                     |" << endl;
+            cout << "| click(4) | click(5) |                     |" << endl;
+            cout << "|__________|__________|_____________________|" << endl;
+            cout << "|            |                              |" << endl;
+            cout << "| 1,500,000  |         To back click (5)    |" << endl;
+            cout << "|            |                              |" << endl;
+            cout << "|  click(4)  |                              |" << endl;
+            cout << "|            |                              |" << endl;
+            cout << "--------------------------------------------" << endl;
+            cin >> command;
+        }
+
         // login user
         void login(string name, string email, string id)
         {
-            loginedUser[0] = name;
-            loginedUser[1] = email;
-            loginedUser[2] = id;
+            // set user data
+            loginedUser.setName(name);
+            loginedUser.setEmail(email);
+            loginedUser.setStudentId(id);
+            loginedUser.setBalance(0);
+            loginedUser.setId(1);
+            loginedUser.setActive(true);
 
             Dashboard();            
         }
