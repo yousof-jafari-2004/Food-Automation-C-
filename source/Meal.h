@@ -7,7 +7,7 @@
 using namespace std;
 
 struct WeekendFoods {
-    string saturday[3][2][2], sunday[3][2][2], monday[3][2][2], Tuesday[3][2][2], Wednesday[3][2][2], Thursday[3][2][2]; 
+    string saturday[3][2][3], sunday[3][2][3], monday[3][2][3], Tuesday[3][2][3], Wednesday[3][2][3], Thursday[3][2][3]; 
 };
 
 class Meal {
@@ -20,36 +20,36 @@ class Meal {
 
         WeekendFoods foodList;
 
-        string AllFoods[6][3][2][2] = {
+        string AllFoods[6][3][2][3] = {
             { 
-                { {"two Boiled egg", "75000" }, {"Honey with butter",  "75000"} },
-                { {"Barberry with chicken and yogurt", "150000"}, {"Stambouli with meat, yogurt", "120000"}},
-                { {"Salad dressing (prepared), fruit", "150000"}, {"Pasta with meat, sauce, pickles, fruit", "150000"} },
+                { {"two Boiled egg", "75000", "1" }, {"Honey with butter",  "75000", "2"} },
+                { {"Barberry with chicken and yogurt", "150000", "3"}, {"Stambouli with meat, yogurt", "120000", "4"}},
+                { {"Salad dressing (prepared), fruit", "150000", "5"}, {"Pasta with meat, sauce, pickles, fruit", "150000", "6"} },
             },
             { 
-                { {"Butter, jam, tea, bread", "75000"}, {"Omelette, tea, bread", "75000"} },
-                { {"Chopped kebab, grilled tomato, buttermilk", "150000"}, {"Chelokhorsht with minced meat, potatoes", "120000"} },
-                { {"Curd and eggplant dish", "120000"}, {"Lentils, yogurt", "120000"} },
+                { {"Butter, jam, tea, bread", "75000" , "7"}, {"Omelette, tea, bread", "75000", "8"} },
+                { {"Chopped kebab, grilled tomato, buttermilk", "150000", "9"}, {"Chelokhorsht with minced meat, potatoes", "120000", "10"} },
+                { {"Curd and eggplant dish", "120000", "11"}, {"Lentils, yogurt", "120000", "12"} },
             },
             { 
-                { {"Lentil food, tea, bread", "95000"}, {"Omelette, tea, bread", "75000"} },
-                { {"Cholukhorsht Ghormeh", "150000"}, {"Meatball with yogurt", "150000" }},
-                { {"_Chicken schnitzel, sauce, barley soup", "120000"}, {"Food: Pasta salad (prepared), barley soup", "120000"} },
+                { {"Lentil food, tea, bread", "95000", "13"}, {"Omelette, tea, bread", "75000", "14"} },
+                { {"Cholukhorsht Ghormeh", "150000", "15"}, {"Meatball with yogurt", "150000", "16"}},
+                { {"_Chicken schnitzel, sauce, barley soup", "120000", "17"}, {"Food: Pasta salad (prepared), barley soup", "120000", "18"} },
             },
             { 
-                { {"Cheese, eggs, tea,", "75000"}, {"Sugar halva, milk, tea, bread", "75000"} },
-                { {"Shuvid pilaf with tuna, pickles, dates", "150000"}, {"Fesanjan chalukhorsht with chicken", "120000"}},
-                { {"Fried chicken, sauce", "120000"}, {"Celery stew, pickles", "150000"}},
+                { {"Cheese, eggs, tea,", "75000", "19"}, {"Sugar halva, milk, tea, bread", "75000", "20"} },
+                { {"Shuvid pilaf with tuna, pickles, dates", "150000", "21"}, {"Fesanjan chalukhorsht with chicken", "120000", "22"}},
+                { {"Fried chicken, sauce", "120000", "23"}, {"Celery stew, pickles", "150000", "24"}},
             },
             { 
-                { {"_Cheese, dates, walnuts, tea, bread", "75000"}, {"Butter, jam, tea, bread", "75000"} },
+                { {"_Cheese, dates, walnuts, tea, bread", "75000", "25"}, {"Butter, jam, tea, bread", "75000", "26"} },
                 { {"_Grilled chicken breast, grilled tomato, buttermilk", "120000" }, {"Chelo okra stew, yogurt" , "150000"}},
-                { {"Baklaplo with chicken slices, yogurt, fruit", "120000"}, {"Tabrizi meatballs, fruit", "150000" }},
+                { {"Baklaplo with chicken slices, yogurt, fruit", "120000", "27"}, {"Tabrizi meatballs, fruit", "150000", "28"}},
             },
 
             { 
-                { {"_Nimro, tea, bread", "75000"}, {"Halva Shukari, cocoa milk, tea, bread", "75000"} },
-                { {" _Chicken breast, butter, yogurt", "150000"}, {"_Lobbiadew with meat, yogurt", "120000"} },
+                { {"_Nimro, tea, bread", "75000", "29"}, {"Halva Shukari, cocoa milk, tea, bread", "75000", "30"} },
+                { {" _Chicken breast, butter, yogurt", "150000", "31"}, {"_Lobbiadew with meat, yogurt", "120000", "32"} },
                 { "", "" },
             },
         };
@@ -69,7 +69,7 @@ class Meal {
                 {
                     for(int k = 0;k <= 1; k++)
                     {
-                        for(int n = 0;n <= 1; n++)
+                        for(int n = 0;n <= 2; n++)
                         {
                             switch (i)
                             {

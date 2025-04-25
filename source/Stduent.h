@@ -3,6 +3,7 @@
 #include <vector>
 #include <windows.h>
 #include "Meal.h"
+#include "Reservation.h"
 
 #pragma once
 
@@ -11,6 +12,8 @@ using namespace std;
 class Student {
     // variables =================================
     private: 
+
+        Reservation reserves[17];
 
         int userId;
 
@@ -84,7 +87,11 @@ class Student {
         {
 
             isActive = val;
+        }
 
+        void setReserves(int index, Reservation r)
+        {
+            reserves[index] = r;
         }
         // GETTERS  =================================
         int getId() const{
@@ -119,6 +126,19 @@ class Student {
 
         bool getIsActive() const {
             return isActive;
+        }
+
+        int getReservationIndex()
+        {
+            int n;
+            for (int i = 0; i <= 16; i++)
+            {
+                if(reserves[i].getReservationId() != 0)
+                {
+                    n++;
+                }
+            }   
+            return n;
         }
 };
 

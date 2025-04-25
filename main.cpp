@@ -5,13 +5,13 @@
 #include "./source/Ui.h"
 #include "./source/Meal.h"
 #include "./source/Reservation.h"
-#include "./source/DiningHall.h"
+// #include "./source/DiningHall.h"
 
 // RUN ALL CLASSES 
 Student student;
 Meal meal;
 Reservation reservation;
-DiningHall diningHall;
+// DiningHall diningHall;
 
 using namespace std;
 

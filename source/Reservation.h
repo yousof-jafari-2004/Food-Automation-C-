@@ -3,6 +3,7 @@
 #include <vector>
 #include <windows.h>
 #include "DiningHall.h"
+
 #pragma once
 
 using namespace std;
@@ -10,30 +11,38 @@ using namespace std;
 class Reservation {
     private:
     // variables =================================
-        int reservationId;
+        int reservationId = 0;
 
-        Student student;
+        int studentId;
 
-        DiningHall dHall;
+        DiningHall dHallId;
 
-        Meal meal;
+        string mealId;
 
-        enum status {};
+        enum status {
+            reserved,
+            canceled,
+        };
 
-        time_t createed_at;
+        time_t created_at;
 
     public:
     // Constructor ============================
-        Reservation()
-        {
+        // Reservation()
+        // {
 
-        };
+        // }
 
     // Functions ==========================
 
 
     // Setters ===========================
     
+        void setCreatedAt(time_t t)
+        {  
+            created_at = t;
+        }
+
         void setReservationId(int id)
         {
 
@@ -41,27 +50,31 @@ class Reservation {
 
         }
         
-        void setStudent(Student stu)
+        void setStudentId(int id)
         {
 
-            student = stu;
+            studentId = id;
 
         }
 
-        void setDHall(DiningHall dh)
+        void setDHall(DiningHall dHall)
         {
 
-            dHall = dh;
+            dHallId = dHall;
 
         }
 
-        void setMeal(Meal m) {
-            meal = m;
+        void setMealId(string m) {
+            mealId = m;
         }
 
 
 
 
     // Getters ===========================
+    int getReservationId()
+    {
+        return reservationId;      
+    }
 };
 

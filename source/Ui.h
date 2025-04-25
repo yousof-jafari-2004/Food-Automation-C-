@@ -3,6 +3,9 @@
 #include <vector>
 #include <iomanip>
 #include <windows.h>
+#include "DiningHall.h"
+#include "Reservation.h"
+#include <ctime>
 #pragma once
 
 using namespace std;
@@ -54,7 +57,10 @@ class UIDesign{
             }
             else if(command == "6"){
                 chargeMeal();
-            }else{
+            }else if(command == "7"){
+                showReservations();
+            }    
+            else{
                 show404();
             }
             cin >> command;
@@ -262,7 +268,7 @@ class UIDesign{
             cout << "---------------------------------------------------" << endl;
         }
 
-        void Dashboard(){
+        void Dashboard(string message = ""){
             system("CLS");
             cout << "---------------------------------------------------" << endl;
             cout << "| " << loginedUser.getName() << " | " << loginedUser.getStudentId() << endl;
@@ -277,9 +283,17 @@ class UIDesign{
             cout << "|                                                 |" << endl;
             cout << "|             To charge your balance (6)          |" << endl;
             cout << "|                                                 |" << endl;
+            cout << "|               To See Reservations (7)           |" << endl;
             cout << "|                                                 |" << endl;
             cout << "|                                                 |" << endl;
             cout << "---------------------------------------------------" << endl;
+
+            if(message != "")
+            {
+                cout << "---------------------------------------------------" << endl;
+                cout << "| " << message << endl;
+                cout << "---------------------------------------------------" << endl;
+            }
 
             cin >> command;
             runUI();
@@ -581,7 +595,7 @@ class UIDesign{
             }else if(command == "6" || command == "7" || command == "8")
             {
                 // reserve the meal
-                reserveMeal(selectedDay, command);
+                reserveTheMeal(selectedDay, command, "0", "0", false, false);
             }else {
                 Dashboard();
             }
@@ -594,10 +608,10 @@ class UIDesign{
         }
 
         // reserve meal
-        void reserveMeal(string day, string time){
+        void reserveTheMeal(string day, string time, string selectedF, string selectedH, bool error, bool hasBalance){
             system("CLS");
 
-            string food1, food2, price1, price2;
+            string food1, food2, price1, price2, foodId1, foodId2;
 
             if(day == "0" and time == "6")
             {
@@ -605,48 +619,66 @@ class UIDesign{
                 food2 = food.getFoods().saturday[0][1][0];
                 price1 = food.getFoods().saturday[0][0][1];
                 price2 = food.getFoods().saturday[0][1][1];
+                foodId1 = food.getFoods().saturday[0][0][2];
+                foodId2 = food.getFoods().saturday[0][1][2];
             }else if(day == "0" and time == "7"){
                 food1 = food.getFoods().saturday[1][0][0];
                 food2 = food.getFoods().saturday[1][1][0];
                 price1 = food.getFoods().saturday[1][0][1];
                 price2 = food.getFoods().saturday[1][1][1];
+                foodId1 = food.getFoods().saturday[1][0][2];
+                foodId2 = food.getFoods().saturday[1][1][2];
             }else if(day == "0" and time == "8"){
                 food1 = food.getFoods().saturday[2][0][0];
                 food2 = food.getFoods().saturday[2][1][0];
                 price1 = food.getFoods().saturday[2][0][1];
                 price2 = food.getFoods().saturday[2][1][1];
+                foodId1 = food.getFoods().saturday[2][0][2];
+                foodId2 = food.getFoods().saturday[2][1][2];
             }else if(day == "1" and time == "6")
             {
                 food1 = food.getFoods().sunday[0][0][0];
                 food2 = food.getFoods().sunday[0][1][0];
                 price1 = food.getFoods().sunday[0][0][1];
                 price2 = food.getFoods().sunday[0][1][1];
+                foodId1 = food.getFoods().sunday[0][0][2];
+                foodId2 = food.getFoods().sunday[0][1][2];
             }else if(day == "1" and time == "7"){
                 food1 = food.getFoods().sunday[1][0][0];
                 food2 = food.getFoods().sunday[1][1][0];
                 price1 = food.getFoods().sunday[1][0][1];
                 price2 = food.getFoods().sunday[1][1][1];
+                foodId1 = food.getFoods().sunday[1][0][2];
+                foodId2 = food.getFoods().sunday[1][1][2];
             }else if(day == "1" and time == "8"){
                 food1 = food.getFoods().sunday[2][0][0];
                 food2 = food.getFoods().sunday[2][1][0];
                 price1 = food.getFoods().sunday[2][0][1];
                 price2 = food.getFoods().sunday[2][1][1];
+                foodId1 = food.getFoods().sunday[2][0][2];
+                foodId2 = food.getFoods().sunday[2][1][2];
             }else if(day == "2" and time == "6")
             {
                 food1 = food.getFoods().monday[0][0][0];
                 food2 = food.getFoods().monday[0][1][0];
                 price1 = food.getFoods().monday[0][0][1];
                 price2 = food.getFoods().monday[0][1][1];
+                foodId1 = food.getFoods().monday[0][0][2];
+                foodId2 = food.getFoods().monday[0][1][2];
             }else if(day == "2" and time == "7"){
                 food1 = food.getFoods().monday[1][0][0];
                 food2 = food.getFoods().monday[1][1][0];
                 price1 = food.getFoods().monday[1][0][1];
                 price2 = food.getFoods().monday[1][1][1];
+                foodId1 = food.getFoods().monday[1][0][2];
+                foodId2 = food.getFoods().monday[1][1][2];
             }else if(day == "2" and time == "8"){
                 food1 = food.getFoods().monday[2][0][0];
                 food2 = food.getFoods().monday[2][1][0];
                 price1 = food.getFoods().monday[2][0][1];
                 price2 = food.getFoods().monday[2][1][1];
+                foodId1 = food.getFoods().monday[2][0][2];
+                foodId2 = food.getFoods().monday[2][1][2];
             }
             else if(day == "3" and time == "6")
             {
@@ -654,69 +686,236 @@ class UIDesign{
                 food2 = food.getFoods().Tuesday[0][1][0];
                 price1 = food.getFoods().Tuesday[0][0][1];
                 price2 = food.getFoods().Tuesday[0][1][1];
+                foodId1 = food.getFoods().Tuesday[0][0][2];
+                foodId2 = food.getFoods().Tuesday[0][1][2];
             }else if(day == "3" and time == "7"){
                 food1 = food.getFoods().Tuesday[1][0][0];
                 food2 = food.getFoods().Tuesday[1][1][0];
                 price1 = food.getFoods().Tuesday[1][0][1];
                 price2 = food.getFoods().Tuesday[1][1][1];
+                foodId1 = food.getFoods().Tuesday[1][0][2];
+                foodId2 = food.getFoods().Tuesday[1][1][2];
             }else if(day == "3" and time == "8"){
                 food1 = food.getFoods().Tuesday[2][0][0];
                 food2 = food.getFoods().Tuesday[2][1][0];
                 price1 = food.getFoods().Tuesday[2][0][1];
                 price2 = food.getFoods().Tuesday[2][1][1];
+                foodId1 = food.getFoods().Tuesday[2][0][2];
+                foodId2 = food.getFoods().Tuesday[2][1][2];
             }else if(day == "4" and time == "6")
             {
                 food1 = food.getFoods().Wednesday[0][0][0];
                 food2 = food.getFoods().Wednesday[0][1][0];
                 price1 = food.getFoods().Wednesday[0][0][1];
                 price2 = food.getFoods().Wednesday[0][1][1];
+                foodId1 = food.getFoods().Wednesday[0][0][2];
+                foodId2 = food.getFoods().Wednesday[0][1][2];
             }else if(day == "4" and time == "7"){
                 food1 = food.getFoods().Wednesday[1][0][0];
                 food2 = food.getFoods().Wednesday[1][1][0];
                 price1 = food.getFoods().Wednesday[1][0][1];
                 price2 = food.getFoods().Wednesday[1][1][1];
+                foodId1 = food.getFoods().Wednesday[1][0][2];
+                foodId2 = food.getFoods().Wednesday[1][1][2];
             }else if(day == "4" and time == "8"){
                 food1 = food.getFoods().Wednesday[2][0][0];
                 food2 = food.getFoods().Wednesday[2][1][0];
                 price1 = food.getFoods().Wednesday[2][0][1];
                 price2 = food.getFoods().Wednesday[2][1][1];
+                foodId1 = food.getFoods().Wednesday[2][0][2];
+                foodId2 = food.getFoods().Wednesday[2][1][2];
             }else if(day == "5" and time == "6")
             {
                 food1 = food.getFoods().Thursday[0][0][0];
                 food2 = food.getFoods().Thursday[0][1][0];
                 price1 = food.getFoods().Thursday[0][0][1];
                 price2 = food.getFoods().Thursday[0][1][1];
+                foodId1 = food.getFoods().Thursday[0][0][2];
+                foodId2 = food.getFoods().Thursday[0][1][2];
             }else if(day == "5" and time == "7"){
                 food1 = food.getFoods().Thursday[1][0][0];
                 food2 = food.getFoods().Thursday[1][1][0];
                 price1 = food.getFoods().Thursday[1][0][1];
                 price2 = food.getFoods().Thursday[1][1][1];
+                foodId1 = food.getFoods().Thursday[1][0][2];
+                foodId2 = food.getFoods().Thursday[1][1][2];
             }else if(day == "5" and time == "8"){
                 food1 = food.getFoods().Thursday[2][0][0];
                 food2 = food.getFoods().Thursday[2][1][0];
                 price1 = food.getFoods().Thursday[2][0][1];
                 price2 = food.getFoods().Thursday[2][1][1];
+                foodId1 = food.getFoods().Thursday[2][0][2];
+                foodId2 = food.getFoods().Thursday[2][1][2];
             }
+
+            // defining dining hall
+            DiningHall hall1;
+            hall1.setHallId(1);
+            hall1.setName("self 3 keshavarzi");
+            hall1.setAddress("baradaran, amir abad");
+            hall1.setCapacity(450);
+            DiningHall hall2;
+            hall2.setHallId(2);
+            hall2.setName("self 5 Pardis");
+            hall2.setAddress("baradaran, Pardis Shokat Abad");
+            hall2.setCapacity(790);
+            DiningHall hall3;
+            hall3.setHallId(3);
+            hall3.setName("Self 6 Abozar");
+            hall3.setAddress("Modaress 2");
+            hall3.setCapacity(350);
+
+            string selectedFood = selectedF;
+            string selectedHall = selectedH;
 
             cout << "---------------------------------------------" << endl;
             cout << "|      balace : " << fixed << setprecision(0) << loginedUser.getBalance() << endl;
             cout << "---------------------------------------------" << endl;
             cout << "|  |                                         |" << endl;
             cout << "|  |---> Food:                               |" << endl;
-            cout << "|  |       1 ( ) _ " << food1 << endl;
+            if(selectedFood == "0"){
+                cout << "|  |       1 () _ " << food1 << endl;
+            }else if(selectedFood == "1")
+            {
+                cout << "|  |       1 (*) _ " << food1 << endl;
+            }else {
+                cout << "|  |       1 () _ " << food1 << endl;
+            }
             cout << "|  |               price : "<< price1 << endl;
-            cout << "|  |       2 ( ) _ " << food2 << endl;
+            if(selectedFood == "0"){
+                cout << "|  |       2 () _ " << food2 << endl;
+            }else if(selectedFood == "2")
+            {
+                cout << "|  |       2 (*) _ " << food2 << endl;
+            }else {
+                cout << "|  |       2 () _ " << food2 << endl;
+            }
             cout << "|  |               price : "<< price2 << endl;
             cout << "|  |                                         |" << endl;
             cout << "|  |---> Dining Hall:                        |" << endl;
-            cout << "|  |       3 ( )                             |" << endl;
-            cout << "|  |       4 ( )                             |" << endl;
-            cout << "|  |       5 ( )                             |" << endl;
+            if(selectedHall == "0"){
+                cout << "|  |       3 () _ " << hall1.getName() << " " << hall1.getAddress() << endl;
+            }else if(selectedHall == "3")
+            {
+                cout << "|  |       3 (*) _ " << hall1.getName() << " " << hall1.getAddress() << endl;
+            }else {
+                cout << "|  |       3 () _ " << hall1.getName() << " " << hall1.getAddress() << endl;
+            }
+            if(selectedHall == "0"){
+                cout << "|  |       4 () _ " << hall2.getName() << " " << hall1.getAddress() << endl;
+
+            }else if(selectedHall == "4")
+            {
+                cout << "|  |       4 (*) _ " << hall2.getName() << " " << hall1.getAddress() << endl;
+            }else {
+                cout << "|  |       4 () _ " << hall2.getName() << " " << hall1.getAddress() << endl;
+            }
+            if(selectedHall == "0"){
+                cout << "|  |       5 () _ " << hall3.getName() << " " << hall1.getAddress() << endl;
+
+
+            }else if(selectedHall == "5")
+            {
+                cout << "|  |       5 (*) _ " << hall3.getName() << " " << hall1.getAddress() << endl;
+            }else {
+                cout << "|  |       5 () _ " << hall3.getName() << " " << hall1.getAddress() << endl;
+            }
             cout << "|  |                                         |" << endl;
             cout << "|  |                                         |" << endl;
-            cout << "--------------------------------------------" << endl;
+            if(error)
+            {
+                cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
+                cout << "|      Please Fill All THE FORM              |" << endl;
+                cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;   
+            }
+            if(hasBalance)
+            {
+                cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
+                cout << "|Your Balance is Not enough, increase your balance by (8)|" << endl;
+                cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;   
+            }
+            cout << "----------------------------------------------" << endl;
+            cout << "|      To Reserve Click (6)                  |" << endl;
+            cout << "----------------------------------------------" << endl;   
+            cout << "----------------------------------------------" << endl;
             cout << "|      TO BACK CLICK (9)                     |" << endl;
-            cout << "--------------------------------------------" << endl;   
+            cout << "----------------------------------------------" << endl;   
+            cin >> command;
+            if(command == "1" || command == "2")
+            {
+                reserveTheMeal(day, time, command, selectedHall, false, false);   
+            }else if(command == "3" || command == "4" || command == "5")
+            {
+                reserveTheMeal(day, time, selectedFood, command, false, false);   
+            }else if(command == "6")
+            {
+                if(selectedFood == "1")
+                {
+                    if(to_string(loginedUser.getBalance()) > price1)
+                    {
+                        if(selectedHall == "1")
+                        {
+                            sendReservingRequest(loginedUser.getId(), foodId1,price1 , hall1);   
+                        }else if(selectedHall == "2")
+                        {
+                            sendReservingRequest(loginedUser.getId(), foodId1,price1 , hall2);   
+                        }else if(selectedHall == "3")
+                        {
+                            sendReservingRequest(loginedUser.getId(), foodId1,price1 , hall3);   
+                        }
+                    }else {
+                        reserveTheMeal(day, time, selectedFood, selectedHall, false, true);   
+                    }
+                }else if(selectedFood == "2")
+                {
+                    if(to_string(loginedUser.getBalance()) > price1)
+                    {
+                        if(selectedHall == "1")
+                        {
+                            sendReservingRequest(loginedUser.getId(), foodId2,price2 , hall1); 
+                        }else if(selectedHall == "2")
+                        {  
+                            sendReservingRequest(loginedUser.getId(), foodId2,price2 , hall2);
+                        }else if(selectedHall == "3")
+                        { 
+                            sendReservingRequest(loginedUser.getId(), foodId2,price2 , hall3);
+                        }
+                    }else {
+                        reserveTheMeal(day, time, selectedFood, selectedHall, false, true);   
+                    }
+                }
+            }else {
+                Dashboard();
+            }
+        }
+
+        void sendReservingRequest(int studentId, string mealId, string price,DiningHall hall)
+        {
+            system("CLS");
+            // create reserve
+            time_t created_at;
+            Reservation reserve;
+            reserve.setMealId(mealId);
+            reserve.setDHall(hall);
+            reserve.setStudentId(studentId);
+            reserve.setReservationId(loginedUser.getReservationIndex() + 1);
+            reserve.setCreatedAt(time(&created_at));
+
+
+            // decrease user balance
+            loginedUser.decreaseBalance(stof(price));
+
+            // sava reseve in student
+            loginedUser.setReserves(loginedUser.getReservationIndex(), reserve);
+            
+            // return back
+            Dashboard();
+        }
+
+        // show reservation
+        void showReservations()
+        {
+
         }
 
         // login user
@@ -730,7 +929,7 @@ class UIDesign{
             loginedUser.setId(1);
             loginedUser.setActive(true);
 
-            Dashboard();            
+            Dashboard("Meal reserved successfully");            
         }
 
 };
