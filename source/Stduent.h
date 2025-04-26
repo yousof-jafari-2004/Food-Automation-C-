@@ -30,17 +30,67 @@ class Student {
             
         }
 
-    // Methods =============================
-        // reserve a new meal
-        void reserveMeal(Meal newMeal)
-        {
-
-        }
-
         // cansel the reservedMeal
         void cancelReservation(Meal newMeal)
         {
 
+        }
+
+        void showAllReserves()
+        {
+            
+
+            for (int i = 0; i <= 16; i++)
+            {
+                if(reserves[i].getReservationId() != 0)
+                {
+
+                    // get the meal data
+                    Meal m;
+
+                    string mealName;
+
+                    for(int j = 0; j <= 2; j++){
+                        for(int k = 0;k <= 1; k++)
+                        {
+                            for(int n = 0;n <= 2; n++)
+                            {
+                                if(m.getFoods().sunday[j][k][n] == reserves[i].getMealId())
+                                {
+                                    mealName = m.getFoods().sunday[j][k][1];
+                                }
+                                if(m.getFoods().saturday[j][k][n] == reserves[i].getMealId())
+                                {
+                                    mealName = m.getFoods().saturday[j][k][1];
+                                }
+                                if(m.getFoods().monday[j][k][n] == reserves[i].getMealId())
+                                {
+                                    mealName = m.getFoods().monday[j][k][1];
+                                }
+                                if(m.getFoods().Tuesday[j][k][n] == reserves[i].getMealId())
+                                {
+                                    mealName = m.getFoods().Tuesday[j][k][1];
+                                }
+                                if(m.getFoods().Wednesday[j][k][n] == reserves[i].getMealId())
+                                {
+                                    mealName = m.getFoods().Wednesday[j][k][1];
+                                }
+                                if(m.getFoods().Thursday[j][k][n] == reserves[i].getMealId())
+                                {
+                                    mealName = m.getFoods().Thursday[j][k][1];
+                                }
+                            }
+                        }
+                    }
+
+                    cout << "------------------------------------------------" << endl;
+                    cout << "|    id : " << reserves[i].getReservationId() << endl;
+                    cout << "|    meal : " << mealName << endl;
+                    cout << "|    dining Hall : " << reserves[i].getHall().getName() << endl;
+                    cout << "|    Created at : " << reserves[i].getCreatedAt() << endl;
+                    cout << "------------------------------------------------" << endl;
+                }
+            }      
         }
 
     // setters  =================================

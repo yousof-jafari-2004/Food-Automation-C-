@@ -71,10 +71,26 @@ class Reservation {
 
 
 
+
     // Getters ===========================
     int getReservationId()
     {
         return reservationId;      
+    }
+
+    string getMealId()
+    {
+        return mealId;
+    }
+
+    DiningHall getHall()
+    {
+        return dHallId;
+    }
+
+    time_t getCreatedAt()
+    {
+        return created_at;
     }
 };
 

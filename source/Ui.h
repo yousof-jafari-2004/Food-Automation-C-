@@ -884,7 +884,9 @@ class UIDesign{
                         reserveTheMeal(day, time, selectedFood, selectedHall, false, true);   
                     }
                 }
-            }else {
+            }else if(command == "8"){
+                chargeMeal();
+            } else {
                 Dashboard();
             }
         }
@@ -915,7 +917,13 @@ class UIDesign{
         // show reservation
         void showReservations()
         {
-
+            system("CLS");
+            loginedUser.showAllReserves();
+            cout << "----------------------------------------------" << endl;
+            cout << "|      To BACK Click (6)                     |" << endl;
+            cout << "----------------------------------------------" << endl;
+            cin >> command;
+            Dashboard();
         }
 
         // login user
