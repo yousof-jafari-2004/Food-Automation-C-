@@ -1,7 +1,6 @@
 # MVC (Model View Controller) C++ Aplication Framework
-> to compile it just use:
+> to compile it with ** g++ compiler ** use:
 ```
-git status
-git add
-git commit
+g++ main.cpp Core/functions.cpp -o app 
 ```
+> or if you use codeblocks or vs code just run it
